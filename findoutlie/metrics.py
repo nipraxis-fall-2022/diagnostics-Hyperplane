@@ -24,4 +24,4 @@ def dvars(img):
     # voxel diff  =  (data from 0 to -1) - (data from 1 to the end of array)
     vox_by_time = np.reshape(data, (-1, data.shape[-1])
     vox_diff = np.diff(vox_by_time, axis=1)
-    return np.sqrt(np.mean(vol_diff**2,axis=0))
+    return np.sqrt(np.mean(vox_diff**2,axis=0))
