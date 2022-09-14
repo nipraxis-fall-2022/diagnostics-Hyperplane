@@ -19,6 +19,12 @@ from findoutlie import outfind
 
 def print_outliers(data_directory):
     outlier_dict = outfind.find_outliers(data_directory)
+    """
+    outlier_dict = {
+        'fname':[outliers]
+    }
+    """
+    print(outlier_dict)
     for fname, outliers in outlier_dict.items():
         if len(outliers) == 0:
             continue

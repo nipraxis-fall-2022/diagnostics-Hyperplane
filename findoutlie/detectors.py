@@ -10,8 +10,8 @@ other on normally distributed values etc.  The routines should check that their
 requirements are met and raise an error otherwise.
 """
 
-# Any imports you need
-# +++your code here+++
+from email import message
+import numpy as np
 
 
 def iqr_detector(measures, iqr_proportion=1.5):
@@ -28,7 +28,7 @@ def iqr_detector(measures, iqr_proportion=1.5):
 
     * > Q3 + IQR * `iqr_proportion` or
     * < Q1 - IQR * `iqr_proportion`.
-
+    
     See: https://en.wikipedia.org/wiki/Interquartile_range
 
     Parameters
@@ -51,3 +51,13 @@ def iqr_detector(measures, iqr_proportion=1.5):
     # * You'll likely need np.logical_or
     # https://textbook.nipraxis.org/numpy_logical.html
     # +++your code here+++
+
+    q1 = np.quantile(measures,25)
+    #q2 = np.quantile(measures,50)
+    q3 = np.quantile(measures,75)
+    iqr = q3 - q1
+    outlier_tf = []
+    for idx,m in enumerate(measures):
+        outlier_tf[idx] = (m > q3+irq*iqr_proportion) or (m < q1 - iqr * iqr_proportion) 
+    print(outlier_tf)
+    return outlier_tf
