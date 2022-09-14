@@ -10,9 +10,8 @@ other on normally distributed values etc.  The routines should check that their
 requirements are met and raise an error otherwise.
 """
 
-from email import message
-import numpy as np
 
+import numpy as np
 
 def iqr_detector(measures, iqr_proportion=1.5):
     """ Detect outliers in `measures` using interquartile range.
@@ -58,6 +57,7 @@ def iqr_detector(measures, iqr_proportion=1.5):
     iqr = q3 - q1
     outlier_tf = []
     for idx,m in enumerate(measures):
-        outlier_tf[idx] = (m > q3+irq*iqr_proportion) or (m < q1 - iqr * iqr_proportion) 
-    print(outlier_tf)
+        outlier_tf[idx] = (m > q3 + iqr * iqr_proportion) or (m < q1 - iqr * iqr_proportion) 
+    print("detector func > outlier_tf: ",outlier_tf)
     return outlier_tf
+print("imported detectors")

@@ -10,7 +10,6 @@ import nibabel as nib
 from .metrics import dvars
 from .detectors import iqr_detector
 
-
 def detect_outliers(fname):
     """ Detect outliers given image file path `filename`
 
@@ -28,6 +27,7 @@ def detect_outliers(fname):
     img = nib.load(fname)
     dvs = dvars(img)    # shape (# of time frames,)
     is_outlier = iqr_detector(dvs, iqr_proportion=2)
+    print("detect_outliers func")
     # Return indices of True values from Boolean array.
     return np.nonzero(is_outlier)
 
@@ -46,9 +46,13 @@ def find_outliers(data_directory):
         Dictionary with keys being filenames and values being lists of outliers
         for filename.
     """
+    print("well well")
+    print(data_directory)
     image_fnames = Path(data_directory).glob('**/sub-*.nii.gz')
     outlier_dict = {}
     for fname in image_fnames:
         outliers = detect_outliers(fname)
         outlier_dict[fname] = outliers
     return outlier_dict
+
+print("imported outfind.py")

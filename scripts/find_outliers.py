@@ -11,10 +11,12 @@ import sys
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
 # Put the findoutlie directory on the Python path.
-PACKAGE_DIR = Path(__file__).parent / '..'
+PACKAGE_DIR = Path(__file__).parent.parent / 'findoutlie/'
+print(PACKAGE_DIR)
 sys.path.append(str(PACKAGE_DIR))
 
 from findoutlie import outfind
+from findoutlie import detectors
 
 
 def print_outliers(data_directory):
