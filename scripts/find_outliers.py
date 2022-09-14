@@ -23,7 +23,6 @@ def print_outliers(data_directory):
         'fname':[outliers]
     }
     """
-    print(outlier_dict)
     for fname, outliers in outlier_dict.items():
         if len(outliers) == 0:
             continue
@@ -46,9 +45,13 @@ def main():
     #
     # Get the data directory from the command line arguments
     parser = get_parser()
-    args = parser.parse_args()
+    try:
+        args = parser.parse_args()
+        data_directory = args.data_directory
+    except:
+        data_directory = 'data/group-00/sub-01'
     # Call function to find outliers.
-    print_outliers(args.data_directory)
+    print_outliers(data_directory)
 
 
 if __name__ == '__main__':

@@ -44,20 +44,12 @@ def iqr_detector(measures, iqr_proportion=1.5):
         A boolean vector of same length as `measures`, where True means the
         corresponding value in `measures` is an outlier.
     """
-    # Any imports you need
-    # Hints:
-    # * investigate np.percentile
-    # * You'll likely need np.logical_or
-    # https://textbook.nipraxis.org/numpy_logical.html
-    # +++your code here+++
-
-    q1 = np.quantile(measures,25)
+    q1 = np.quantile(measures,0.25)
     #q2 = np.quantile(measures,50)
-    q3 = np.quantile(measures,75)
+    q3 = np.quantile(measures,0.75)
     iqr = q3 - q1
     outlier_tf = []
-    for idx,m in enumerate(measures):
-        outlier_tf[idx] = (m > q3 + iqr * iqr_proportion) or (m < q1 - iqr * iqr_proportion) 
-    print("detector func > outlier_tf: ",outlier_tf)
+    for m in measures:
+        outlier_tf.append((m > q3 + iqr * iqr_proportion) or (m < q1 - iqr * iqr_proportion))
+    #print("detector func > outlier_tf: ",outlier_tf)
     return outlier_tf
-print("imported detectors")
