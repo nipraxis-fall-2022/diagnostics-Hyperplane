@@ -10,8 +10,6 @@ import sys
 
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
-import findoutlie
-
 # Put the findoutlie directory on the Python path.
 PACKAGE_DIR = Path(__file__).parent / '..'
 sys.path.append(str(PACKAGE_DIR))
